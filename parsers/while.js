@@ -1,6 +1,8 @@
 let regexpDepth = require('./../helpers/regexp.depth');
 
-module.exports = function (html) {
+
+
+module.exports = function(html) {
 	i = 0;
 	let result = {
 		tag: 'while',

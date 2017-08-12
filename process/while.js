@@ -1,40 +1,10 @@
-var $lorem = require('./../data');
+require('./../extenders/string');
 
-String.prototype.dropGarbage = function(){
-	return this.replace(/(\s| |=|"|&)/gim, '');
-}
-String.prototype.toInt = function(){
-	return parseInt(this.replace(/\D/gim, ''));
-}
-String.prototype.evaluate = function(options, loopCount){
-	var ev = new RegExp('\{\{([\\s\\S]*?)\}\}', 'gim');
-	var start = options.start,
-			end = options.end,
-			index = loopCount;
-	return this.replace(ev, function(a, b) {
-		// console.log(eval(a.replace(/(\{|\})/gim, '')))
-		return eval(a.replace(/(\{|\})/gim, ''));
-	})
-}
-String.prototype.escapeSpecialChars = function(){
-	return this
-		.replace(/\*/gim, '\\*')
-		.replace(/\=/gim, '\\=')
-		.replace(/\$/gim, '\\$')
-		.replace(/\+/gim, '\\+')
-		.replace(/\(/gim, '\\(')
-		.replace(/\)/gim, '\\)')
-		.replace(/\[/gim, '\\[')
-		.replace(/\]/gim, '\\]')
-		.replace(/\?/gim, '\\?')
-		.replace(/\:/gim, '\\:');
-}
-String.prototype.dropEmptyLines = function(){
-	return this.replace(/^(\t|\s)*[\r\n]/gm, '');
-}
+
 
 module.exports = function(html, options) {
 
+	// parsing options from [while] expression
 	function getOptions(index) {
 		var exp = options.matches[index].match(/while="[^"]*"/gim)[0].replace(/(while|"|=")/gim, '')
 		return {
