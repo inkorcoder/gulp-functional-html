@@ -1,3 +1,5 @@
+var $lorem = require('./../data');
+
 String.prototype.dropGarbage = function(){
 	return this.replace(/(\s| |=|"|&)/gim, '');
 }
@@ -16,9 +18,12 @@ String.prototype.evaluate = function(options, loopCount){
 }
 String.prototype.escapeSpecialChars = function(){
 	return this
+		.replace(/\*/gim, '\\*')
 		.replace(/\=/gim, '\\=')
 		.replace(/\$/gim, '\\$')
 		.replace(/\+/gim, '\\+')
+		.replace(/\(/gim, '\\(')
+		.replace(/\)/gim, '\\)')
 		.replace(/\[/gim, '\\[')
 		.replace(/\]/gim, '\\]')
 		.replace(/\?/gim, '\\?')
