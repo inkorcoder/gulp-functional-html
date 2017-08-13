@@ -15,3 +15,9 @@ Attribute | Arguments | Example
 `if` | `expression` | ```<li if="i === 0">...</li>```
 
 `li` will be printed only if the result of expression will be `true`. Otherwise, this block will be removed completely. <br> You can use any default Javascript code here, `Math.random() > 0.5` for example. In this case this block will be printed only if `Math.random()` will be greater than 0.5
+
+Attribute | Arguments | Example
+--------- | --------- | -------
+`for` | `expression [of,in]` | ```<li for="user in ['Mike', 'John', 'Susey', 'Vasya']">...</li>```
+
+`for` loop goes through array and displays elements. You can use `in` or `of` keyword. They both doing the same.
