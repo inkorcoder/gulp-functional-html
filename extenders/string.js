@@ -6,7 +6,7 @@ var getExpressionResult = require('./../parsers/if').getExpressionResult;
 
 
 String.prototype.dropGarbage = function(){
-	return this.replace(/(\s| |=|"|&)/gim, '');
+	return this.replace(/( of| in|\s| |=|"|&)/gim, '');
 }
 String.prototype.toInt = function(){
 	return parseInt(this.replace(/\D/gim, ''));
@@ -16,6 +16,8 @@ String.prototype.evaluate = function(options, loopCount){
 	var start = options.start,
 			end = options.end,
 			index = loopCount;
+	eval("item = options.data ? options.data[loopCount] : ''");
+	console.log(options)
 
 	var $this = this;
 
