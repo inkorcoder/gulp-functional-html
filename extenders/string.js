@@ -13,11 +13,12 @@ String.prototype.toInt = function(){
 }
 String.prototype.evaluate = function(options, loopCount){
 	var ev = new RegExp('\{\{([\\s\\S]*?)\}\}', 'gim');
+	// variables
 	var start = options.start,
 			end = options.end,
 			index = loopCount;
-	eval("item = options.data ? options.data[loopCount] : ''");
-	console.log(options)
+	// special variable for [for of, for in] loops
+	eval(options.variable+" = options.data ? options.data[loopCount] : ''");
 
 	var $this = this;
 
