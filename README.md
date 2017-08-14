@@ -11,6 +11,7 @@ This module allows you to use some great stuff from JS-frameworks templating in 
 - [+] for in
 - [+] Lorem generator
 - [ ] hash generator
+- [+] self-closing tags
 
 ##### Components
 
