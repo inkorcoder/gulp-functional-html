@@ -2,6 +2,29 @@
 
 This module allows you to use some great stuff from JS-frameworks templating in your HTML. The synthax is looks like an Angular templates synthax.
 
+## Progress
+
+##### Basic
+
+- [+] while
+- [+] if
+- [+] for in
+- [+] Lorem generator
+- [ ] hash generator
+
+##### Components
+
+- [ ] component
+
+##### Binding
+
+- [ ] basic
+- [ ] global
+- [ ] class
+- [ ] attribute
+- [ ] id
+- [ ] style
+
 ## Basic
 
 ### while
@@ -35,4 +58,5 @@ Function | Arguments | Example
 - `mountains` - Далеко-далеко за словесными горами в стране...
 - `verter` - Душа моя озарена неземной радостью, как...
 - `kafka` - Проснувшись однажды утром после беспокойного сна...
+
 Maximum length of string is `500` words.

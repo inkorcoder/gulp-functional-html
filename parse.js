@@ -9,9 +9,24 @@ let process = {
 
 module.exports = function parse(html){
 
-	html = process._while(html, parsers._while(html));
+	var step = 0;
+	function parseHTML(_html){
+		parsed = {
+			_while: parsers._while(_html),
+			_for: parsers._for(_html)
+		};
 
-	html = process._for(html, parsers._for(html));
+		_html = process._while(_html, parsed._while);
+		_html = process._for(_html, parsed._for);
+
+		if (step < 10){
+			step++;
+			_html = parseHTML(_html);
+		}
+		return _html;
+	}
+	html = parseHTML(html);
+
 
 	return html;
 

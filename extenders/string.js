@@ -31,9 +31,9 @@ String.prototype.evaluate = function(options, loopCount){
 
 	// remove if attribute
 	$this = $this.replace(/((\s| )?if\="(.*?)")/gim, '');
-
+	// console.log(eval(options.variable))
 	return $this.replace(ev, function(a, b) {
-		return eval(a.replace(/(\{|\})/gim, ''));
+		return eval(options.variable) ? eval(a.replace(/(\{|\})/gim, '')) : '';
 	})
 }
 String.prototype.escapeSpecialChars = function(){

@@ -8,5 +8,5 @@ module.exports = function (tag, deth){
 		}
 		return str;
 	}
-	return new RegExp('(?:^('+tab(deth)+')<[^>]*'+tag+'[^>]*>([\\s\\S]*?)^('+tab(deth)+')<\/[^>]*>)', 'gim');
+	return new RegExp('(<[^>]*'+tag+'[^>]*>(.*?)(<\/[^>]*>|\/>)|<[^>]*'+tag+'[^>]*\/>)\n|(?:^('+tab(deth)+')<[^>]*'+tag+'[^>]*>([\\s\\S]*?)^('+tab(deth)+')<\/[^>]*>)', 'gim');
 }
