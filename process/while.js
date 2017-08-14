@@ -26,7 +26,7 @@ module.exports = function(html, options) {
 		// generate loop
 		for (eval('var loopCount = o.start'); eval('loopCount'+o.state+''+o.end); eval('loopCount'+(o.start > o.end ? '--' : '++')+'')) {
 			parsedHtml += (loopCount === o.start ? '' : '\n')+options.matches[i]
-				.replace(/((\s| )while="[^"]*"|while="[^"]*")/gim, '')
+				.replace(/((\s| )while\="[^"]*"|while\="[^"]*")/gim, '')
 				.evaluate(o, loopCount);
 		}
 		html = html.replace(new RegExp(options.matches[i].escapeSpecialChars(), 'gim'), parsedHtml.dropEmptyLines());
