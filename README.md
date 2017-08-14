@@ -6,12 +6,12 @@ This module allows you to use some great stuff from JS-frameworks templating in 
 
 ##### Basic
 
-- [+] while
-- [+] if
-- [+] for in
-- [+] Lorem generator
+- [x] while
+- [x] if
+- [x] for in
+- [x] Lorem generator
 - [ ] hash generator
-- [+] self-closing tags
+- [x] self-closing tags
 
 ##### Components
 
