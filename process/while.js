@@ -8,6 +8,7 @@ module.exports = function(html, options) {
 	function getOptions(index) {
 		var exp = options.matches[index].match(/while="[^"]*"/gim)[0].replace(/(while|"|=")/gim, '')
 		return {
+			depth: 		options.depth,
 			variable: exp.match(/^(.*?)=/gim)[0].dropGarbage(),
 			start: 		exp.match(/=(.*?)(&|;)/gim)[0].dropGarbage().toInt(),
 			state: 		exp.match(/(&|;)(.*?)(>=|<=|<|>)/gim)[0].replace(/(&|;|\s)/gim, ''),

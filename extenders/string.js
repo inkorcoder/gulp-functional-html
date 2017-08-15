@@ -51,3 +51,11 @@ String.prototype.escapeSpecialChars = function(){
 String.prototype.dropEmptyLines = function(){
 	return this.replace(/^(\t|\s)*[\r\n]/gm, '');
 }
+
+String.prototype.multiply = function(count){
+	let result = '';
+	for (let i = 0; i < count; i++){
+		result += this;
+	}
+	return result;
+};
