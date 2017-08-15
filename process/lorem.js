@@ -5,7 +5,6 @@ var $lorem = require('./../data');
 
 
 module.exports = function(html, options) {
-	console.log(options.matches)
 	for (let i = options.matches.length-1; i >= 0; i--){
 		let regExp = new RegExp(
 			options.matches[i].escapeSpecialChars().replace(/(\{|\})/gim, '\\$1'),
