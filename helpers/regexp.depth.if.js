@@ -1,8 +1,8 @@
-module.exports = function (tag, deth){
+module.exports = function (tag, depth){
 	tab = function(){
 		str = '';
 		var i = 0;
-		while (i < deth){
+		while (i < depth){
 			str += '\\t';
 			i++;
 		}

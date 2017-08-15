@@ -1,32 +1,39 @@
+config = require('./config');
+
 let parsers = {
-	_while: require('./parsers/while'),
-	_for: require('./parsers/for')
+	While: require('./parsers/while'),
+	For: require('./parsers/for'),
+	Lorem: require('./parsers/lorem')
 };
 let process = {
-	_while: require('./process/while'),
-	_for: require('./process/for')
+	While: require('./process/while'),
+	For: require('./process/for'),
+	Lorem: require('./process/lorem')
 };
 
 module.exports = function parse(html){
 
-	var step = 0;
-	function parseHTML(_html){
+	var step = config.depthStart;
+	function parseHTML(processHTML){
+
 		parsed = {
-			_while: parsers._while(_html),
-			_for: parsers._for(_html)
+			While: parsers.While(processHTML),
+			For: parsers.For(processHTML)
 		};
 
-		_html = process._while(_html, parsed._while);
-		_html = process._for(_html, parsed._for);
+		processHTML = process.While(processHTML, parsed.While);
+		processHTML = process.For(processHTML, parsed.For);
 
-		if (step < 10){
+		if (step < config.depthEnd){
 			step++;
-			_html = parseHTML(_html);
+			processHTML = parseHTML(processHTML);
 		}
-		return _html;
+		return processHTML;
 	}
 	html = parseHTML(html);
 
+	// parse non-processed earlier $lorem()
+	html = process.Lorem(html, parsers.Lorem(html));
 
 	return html;
 

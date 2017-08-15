@@ -1,15 +1,16 @@
 let regexpDepth = require('./../helpers/regexp.depth');
+let config = require('./../config');
 
 
 
 module.exports = function(html) {
-	i = 0;
+	i = 1;
 	let result = {
 		tag: 'for',
-		depth: 0,
+		depth: config.depthStart,
 		matches: []
 	}
-	while (i < 10){
+	while (i < config.depthEnd){
 		if (html.match(regexpDepth('for', i))){
 			result.depth = i;
 			result.matches = html.match(regexpDepth('for', i));

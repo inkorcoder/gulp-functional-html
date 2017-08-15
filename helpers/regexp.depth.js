@@ -1,12 +1,12 @@
-module.exports = function (tag, deth){
+module.exports = function (tag, depth){
 	tab = function(){
 		str = '';
 		var i = 0;
-		while (i < deth){
+		while (i < depth){
 			str += '\\t';
 			i++;
 		}
 		return str;
 	}
-	return new RegExp('^((\t|\s)+?)(<[^>]*'+tag+'[^>]*>(.*?)(<\/[^>]*>|\/>)|<[^>]*'+tag+'[^>]*\/>)\n|(?:^('+tab(deth)+')<[^>]*'+tag+'\="[^>]*>([\\s\\S]*?)^('+tab(deth)+')<\/[^>]*>)', 'gim');
+	return new RegExp('^((\t|\s)+?)(<[^>]*'+tag+'[^>]*>(.*?)(<\/[^>]*>|\/>)|<[^>]*'+tag+'[^>]*\/>)\n|(?:^('+tab(depth)+')<[^>]*'+tag+'\="[^>]*>([\\s\\S]*?)^('+tab(depth)+')<\/[^>]*>)', 'gim');
 }
