@@ -12,7 +12,8 @@ module.exports = function(html, options) {
 			start: 		0,
 			state: 		'<',
 			end: 			eval(exp.match(/(of|in)(.+?)$/gim)[0].replace(/^((of|in) )/, '')).length,
-			data: 		eval(exp.match(/(of|in)(.+?)$/gim)[0].replace(/^((of|in) )/, ''))
+			data: 		eval(exp.match(/(of|in)(.+?)$/gim)[0].replace(/^((of|in) )/, '')),
+			hash: 		options.matches[i].match(/\{(.+?)hash(.+?)\}/gim) ? true : false
 		};
 	}
 

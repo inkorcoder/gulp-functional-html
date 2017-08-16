@@ -1,6 +1,7 @@
 var $lorem = require('./../data');
 var _if = require('./../parsers/if');
 var getExpressionResult = require('./../parsers/if').getExpressionResult;
+let generateHash = require('./../helpers/hash');
 
 
 
@@ -15,7 +16,8 @@ String.prototype.evaluate = function(options, loopCount){
 	var ev = new RegExp('\{\{([\\s\\S]*?)\}\}', 'gim');
 	// variables
 	var start = options.start,
-			end = options.end;
+			end = options.end,
+			hash = options.hash ? generateHash(5) : '';
 	// special variable for [for of, for in] loops
 	eval("var "+options.variable+" = options.data ? options.data[loopCount] : loopCount");
 

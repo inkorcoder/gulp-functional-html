@@ -61,3 +61,12 @@ Function | Arguments | Example
 - `kafka` - Проснувшись однажды утром после беспокойного сна...
 
 Maximum length of string is `500` words.
+
+
+### Hash generator
+Keyword | Arguments | Example
+------- | --------- | -------
+`hash` | - | ```<li>{{$lorem(100)}}, <br>hash: {{hash}}</li>```
+
+`hash` keyword is accessible in `while` and `for` loops. For each iteration hash will be generated automaticaly and will be the same in any place of template. <br>
+Hash string length is equals to 5.

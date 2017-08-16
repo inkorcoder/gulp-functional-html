@@ -12,7 +12,8 @@ module.exports = function(html, options) {
 			variable: exp.match(/^(.*?)=/gim)[0].dropGarbage(),
 			start: 		exp.match(/=(.*?)(&|;)/gim)[0].dropGarbage().toInt(),
 			state: 		exp.match(/(&|;)(.*?)(>=|<=|<|>)/gim)[0].replace(/(&|;|\s)/gim, ''),
-			end: 			exp.match(/(>=|<=|<|>)(.*?)$/gim)[0].replace(/(>=|<=|<|>|&|\s)/gim, '').toInt()
+			end: 			exp.match(/(>=|<=|<|>)(.*?)$/gim)[0].replace(/(>=|<=|<|>|&|\s)/gim, '').toInt(),
+			hash: 		options.matches[i].match(/\{(.+?)hash(.+?)\}/gim) ? true : false
 		};
 	}
 
