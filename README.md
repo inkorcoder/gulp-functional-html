@@ -10,7 +10,7 @@ This module allows you to use some great stuff from JS-frameworks templating in 
 - [x] if
 - [x] for in
 - [x] Lorem generator
-- [ ] hash generator
+- [x] hash generator
 - [x] self-closing tags
 
 ##### Components
