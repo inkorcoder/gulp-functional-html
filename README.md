@@ -45,9 +45,9 @@ Attribute | Arguments | Example
 ### for in, for of
 Attribute | Arguments | Example
 --------- | --------- | -------
-`for` | `expression [of,in]` | ```<li for="user in ['Mike', 'John', 'Susey', 'Vasya']">...</li>```
+`for` | `expression [of,in]` | ```<li for="let user in ['Mike', 'John', 'Susey', 'Vasya']">...</li>```
 
-`for` loop goes through array and displays elements. You can use `in` or `of` keyword. They both doing the same.
+`for` loop goes through array and displays elements. You can use `in` or `of` keyword. They both doing the same. `let` is important keyword!
 
 ### Lorem generator
 Function | Arguments | Example

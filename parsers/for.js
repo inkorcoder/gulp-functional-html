@@ -1,4 +1,4 @@
-let regexpDepth = require('./../helpers/regexp.depth');
+let regexpDepth = require('./../helpers/regexp.depth.for');
 let config = require('./../config');
 
 

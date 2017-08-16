@@ -6,7 +6,7 @@ var getExpressionResult = require('./../parsers/if').getExpressionResult;
 
 
 String.prototype.dropGarbage = function(){
-	return this.replace(/( of| in|\s| |=|"|&)/gim, '');
+	return this.replace(/( of| in|\s| |=|"|&|let)/gim, '');
 }
 String.prototype.toInt = function(){
 	return parseInt(this.replace(/\D/gim, ''));
