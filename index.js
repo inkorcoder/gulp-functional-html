@@ -16,7 +16,7 @@ module.exports = function (params) {
 		}
 
 		if (file.isStream()) {
-			throw new gutil.PluginError('gulp-functional-html', 'stream not supported');
+			throw new gutil.PluginError('gulp-modular', 'stream not supported');
 		}
 
 		if (file.isBuffer()) {
@@ -29,7 +29,7 @@ module.exports = function (params) {
 
 	function process(content, filePath, sourceMap) {
 
-		return {content: parse(content), map: null};
+		return {content: parse(content, params), map: null};
 	}
 
 

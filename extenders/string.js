@@ -61,3 +61,7 @@ String.prototype.multiply = function(count){
 	}
 	return result;
 };
+
+String.prototype.getHTMLTag = function(tagName){
+	return this.match(new RegExp(tagName+'\="(.+?)"'))[0].replace(new RegExp(tagName), '').dropGarbage();
+}
