@@ -15,9 +15,10 @@ module.exports = function(html, options, components, step) {
 			variable: exp.match(/^(.*?)(of|in)/gim)[0].dropGarbage(),
 			start: 		0,
 			state: 		'<',
-			end: 			eval(exp.match(/(of|in)(.+?)$/gim)[0].replace(/^((of|in) )/, '')).length,
-			data: 		eval(exp.match(/(of|in)(.+?)$/gim)[0].replace(/^((of|in) )/, '')),
-			hash: 		options.matches[i].match(/\{(.+?)hash(.+?)\}/gim) ? true : false
+			end: 			eval(exp.replace(/(\t|\n)/gim, '').match(/^(.+?|\\n)$/gim)[0].replace(/^let(.+?)((of|in) )/, '')).length,
+			data: 		eval(exp.replace(/(\t|\n)/gim, '').match(/^(.+?|\\n)$/gim)[0].replace(/^let(.+?)((of|in) )/, '')),
+			// hash: 		options.matches[i].match(/\{(.+?)hash(.+?)\}/gim) ? true : false
+			hash: 		true
 		};
 	}
 
@@ -34,7 +35,7 @@ module.exports = function(html, options, components, step) {
 			parsedHtml += (loopCount === o.start ? '' : '\n')+options.matches[i]
 				.replace(/((\s| )for="[^"]*"|for="[^"]*")/gim, '')
 				.evaluate(o, loopCount);
-			parsedHtml = reduceComoponent(parsedHtml, components, step)
+			parsedHtml = reduceComoponent(parsedHtml, components, step, o, loopCount)
 		}
 		html = html.replace(new RegExp(options.matches[i].escapeSpecialChars(), 'gim'), parsedHtml.dropEmptyLines());
 	}

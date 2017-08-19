@@ -2,7 +2,7 @@ require('./../extenders/string');
 
 
 
-module.exports = function(html, components, step) {
+module.exports = function(html, components, step, parentOptions, loopCount) {
 
 	// for each component
 	for (key in components){
@@ -15,7 +15,7 @@ module.exports = function(html, components, step) {
 			for (var i = matches.length - 1; i >= 0; i--) {
 				html = html.replace(
 					new RegExp(matches[i], 'gim'),
-					components[key].template.fixIndents(step+1)
+					components[key].template.fixIndents(step+1).evaluate(parentOptions, loopCount)
 				)
 			};
 		}
