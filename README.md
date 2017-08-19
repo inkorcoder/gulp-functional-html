@@ -78,14 +78,12 @@ Keyword | Arguments | Example
 ------- | --------- | -------
 `component` | `name`&lt;string&gt;, `path`&lt;string&gt; | ```<component name="user" path="components/user">```, ```<user></user>```
 
-``
-
 You can use components to build your page. First of all you need to create a separate file and declare your component by special tag in <head>:
 ```
-&lt;-- components/user.html --&gt;
+<-- components/user.html -->
 <div class="user">{{user}}</div>
 
-&lt;-- index.html --&gt;
+<-- index.html -->
 <meta charset="UTF-8">
 <title>Document</title>
 
@@ -96,14 +94,14 @@ You can use components to build your page. First of all you need to create a sep
 This declarations will be removed after transpilation, so don't worry about broken syntax. <br><br>
 After that you can put your component in any part of document:
 ```
-&lt;-- components/user.html --&gt;
+<-- components/user.html -->
 <div class="user">
 	<h3>{{user.name}}</h3>
 	age: {{user.age}}<br>
 	last visit: {{user.time}}
 </div>
 
-&lt;-- index.html --&gt;
+<-- index.html -->
 <li for="let user of ['Mike', 'John', 'Other']">
 	<user></user>
 </li>
