@@ -37,17 +37,6 @@ String.prototype.evaluate = function(options, loopCount){
 	})
 }
 String.prototype.escapeSpecialChars = function(){
-	// return this
-	// 	.replace(/\*/gim, '\\*')
-	// 	.replace(/\=/gim, '\\=')
-	// 	.replace(/\$/gim, '\\$')
-	// 	.replace(/\+/gim, '\\+')
-	// 	.replace(/\(/gim, '\\(')
-	// 	.replace(/\)/gim, '\\)')
-	// 	.replace(/\[/gim, '\\[')
-	// 	.replace(/\]/gim, '\\]')
-	// 	.replace(/\?/gim, '\\?')
-	// 	.replace(/\:/gim, '\\:');
 	return this.replace(/(\*|\=|\$|\+|\(|\)|\[|\]|\?|\:|\!|\@|\#|\^|\&)/gim, '\\$1');
 }
 String.prototype.dropEmptyLines = function(){

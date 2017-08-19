@@ -3,20 +3,17 @@ let config = require('./../config');
 
 
 
-module.exports = function(html) {
-	i = 1;
+module.exports = function(html, step) {
+	i = step;
 	let result = {
 		tag: 'for',
-		depth: config.depthStart,
+		depth: 0,
 		matches: []
 	}
-	while (i < config.depthEnd){
-		if (html.match(regexpDepth('for', i))){
-			result.depth = i;
-			result.matches = html.match(regexpDepth('for', i));
-			return result;
-		}
-		i++;
+	if (html.match(regexpDepth('for', i))){
+		result.depth = i;
+		result.matches = html.match(regexpDepth('for', i));
+		return result;
 	}
 	return result;
 }

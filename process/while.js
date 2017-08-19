@@ -4,6 +4,9 @@ require('./../extenders/string');
 
 module.exports = function(html, options) {
 
+	if (options.matches.length === 0) {
+		return html;
+	}
 	// parsing options from [while] expression
 	function getOptions(index) {
 		var exp = options.matches[index].match(/while="[^"]*"/gim)[0].replace(/(while|"|=")/gim, '')

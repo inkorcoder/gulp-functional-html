@@ -35,18 +35,18 @@ module.exports = function parse(html, params){
 	// clear components decalrations
 	html = html.replace(/^(.?)<component[^>]*>\n/gim, '');
 
-	var step = config.depthStart;
+	var step = 0;
 	function parseHTML(processHTML){
 
 		parsed = {
-			While: parsers.While(processHTML),
-			For: parsers.For(processHTML)
+			While: parsers.While(processHTML, step),
+			For: parsers.For(processHTML, step)
 		};
 
 		processHTML = process.While(processHTML, parsed.While);
 		processHTML = process.For(processHTML, parsed.For);
 
-		if (step < config.depthEnd){
+		if (processHTML.match(/(while\="[^"]*"|for\="let[^"]*")/m)){
 			step++;
 			processHTML = parseHTML(processHTML);
 		}
