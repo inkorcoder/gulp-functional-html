@@ -54,3 +54,7 @@ String.prototype.multiply = function(count){
 String.prototype.getHTMLTag = function(tagName){
 	return this.match(new RegExp(tagName+'\="(.+?)"'))[0].replace(new RegExp(tagName), '').dropGarbage();
 }
+
+String.prototype.fixIndents = function(indentsCount) {
+	return this.replace(/^/gim, "\n"+("\t".multiply(indentsCount)));
+}
