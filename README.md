@@ -95,11 +95,7 @@ This declarations will be removed after transpilation, so don't worry about brok
 After that you can put your component in any part of document:
 ```
 <-- components/user.html -->
-<div class="user">
-	<h3>{{user.name}}</h3>
-	age: {{user.age}}<br>
-	last visit: {{user.time}}
-</div>
+<div class="user">{{user}}</div>
 
 <-- index.html -->
 <li for="let user of ['Mike', 'John', 'Other']">
@@ -120,6 +116,14 @@ This code will be transformed to this:
 ```
 Also, you can write large arrays:
 ```
+<-- components/user.html -->
+<div class="user">
+	<h3>{{user.name}}</h3>
+	age: {{user.age}}<br>
+	last visit: {{user.time}}
+</div>
+
+<-- index.html -->
 <li for="let user of [
 	{name: 'Mike', age: 12, time: '11.08.2017'},
 	{name: 'John', age: 18, time: '11.08.2017'},
