@@ -44,7 +44,7 @@ module.exports = function parse(html, params){
 		};
 
 		processHTML = process.While(processHTML, parsed.While);
-		processHTML = process.For(processHTML, parsed.For);
+		processHTML = process.For(processHTML, parsed.For, foundedComponents);
 
 		if (processHTML.match(/(while\="[^"]*"|for\="let[^"]*")/m)){
 			step++;

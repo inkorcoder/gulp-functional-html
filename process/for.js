@@ -1,8 +1,9 @@
 require('./../extenders/string');
+var reduceComoponent = require('./../process/component.reduce');
 
 
 
-module.exports = function(html, options) {
+module.exports = function(html, options, components) {
 
 	if (options.matches.length === 0) {
 		return html;
@@ -33,6 +34,7 @@ module.exports = function(html, options) {
 			parsedHtml += (loopCount === o.start ? '' : '\n')+options.matches[i]
 				.replace(/((\s| )for="[^"]*"|for="[^"]*")/gim, '')
 				.evaluate(o, loopCount);
+			parsedHtml = reduceComoponent(parsedHtml, components)
 		}
 		html = html.replace(new RegExp(options.matches[i].escapeSpecialChars(), 'gim'), parsedHtml.dropEmptyLines());
 	}
