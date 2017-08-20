@@ -35,7 +35,8 @@ module.exports = function(html, options, components, step) {
 			parsedHtml += (loopCount === o.start ? '' : '\n')+options.matches[i]
 				.replace(/((\s| )for="[^"]*"|for="[^"]*")/gim, '')
 				.evaluate(o, loopCount);
-			parsedHtml = reduceComoponent(parsedHtml, components, step, o, loopCount)
+			// component reducing
+			parsedHtml = reduceComoponent(parsedHtml, components, step, o, loopCount);
 		}
 		html = html.replace(new RegExp(options.matches[i].escapeSpecialChars(), 'gim'), parsedHtml.dropEmptyLines());
 	}

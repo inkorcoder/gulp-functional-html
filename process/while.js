@@ -1,8 +1,9 @@
 require('./../extenders/string');
+var reduceComoponent = require('./../process/component.reduce');
 
 
 
-module.exports = function(html, options) {
+module.exports = function(html, options, components, step) {
 
 	if (options.matches.length === 0) {
 		return html;
@@ -16,7 +17,8 @@ module.exports = function(html, options) {
 			start: 		exp.match(/=(.*?)(&|;)/gim)[0].dropGarbage().toInt(),
 			state: 		exp.match(/(&|;)(.*?)(>=|<=|<|>)/gim)[0].replace(/(&|;|\s)/gim, ''),
 			end: 			exp.match(/(>=|<=|<|>)(.*?)$/gim)[0].replace(/(>=|<=|<|>|&|\s)/gim, '').toInt(),
-			hash: 		options.matches[i].match(/\{(.+?)hash(.+?)\}/gim) ? true : false
+			// hash: 		options.matches[i].match(/\{(.+?)hash(.+?)\}/gim) ? true : false
+			hash: 		true
 		};
 	}
 
@@ -33,6 +35,8 @@ module.exports = function(html, options) {
 			parsedHtml += (loopCount === o.start ? '' : '\n')+options.matches[i]
 				.replace(/((\s| )while\="[^"]*"|while\="[^"]*")/gim, '')
 				.evaluate(o, loopCount);
+			// component reducing
+			parsedHtml = reduceComoponent(parsedHtml, components, step, o, loopCount);
 		}
 		html = html.replace(new RegExp(options.matches[i].escapeSpecialChars(), 'gim'), parsedHtml.dropEmptyLines());
 	}
