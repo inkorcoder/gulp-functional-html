@@ -34,6 +34,7 @@ String.prototype.evaluate = function(options, loopCount){
 	$this = $this.replace(/((\s| )?if\="(.*?)")/gim, '');
 	return $this.replace(ev, function(a, b) {
 		if (eval("typeof "+b.split('.')[0]) === 'undefined'){
+			console.log('['+options.depth+'] Evaluation :: '+b+' is not defined in <' +options.component.tagName+ '>')
 			return b;
 		}
 		return eval(options.variable) !== '' ? eval(a.replace(/(\{|\})/gim, '')) : '';
