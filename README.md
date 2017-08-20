@@ -19,7 +19,7 @@ This module allows you to use some great stuff from JS-frameworks templating in 
 
 ##### Binding
 
-- [ ] basic
+- [x] basic
 - [ ] global
 - [ ] class
 - [ ] attribute
@@ -157,3 +157,19 @@ This code will be transformed to this:
 </li>
 ```
 The data automatically binds to variable wich you create earlier in `for="let $var of something"`. If array contains only simple types of data (number, string, boolean) then `$var` binds to that. If array contains an objects then `$var` will be binded to each object, and you need to use properties from this object: `$var.name`, `$var.age`, `$var.time`
+
+### Binding
+
+You can bind variables to component and use it inside. The variable name is writing in square braces. The value writing in quotes. It can be variable name or string, or boolean.
+
+```
+<!-- ./user.html -->
+<div class="user-card">
+	{{name}}
+<div>
+
+<!-- index.html -->
+<li for="user in users">
+	<user [name]="user"></user>
+</li>
+```
