@@ -12,7 +12,8 @@ String.prototype.dropGarbage = function(){
 String.prototype.toInt = function(){
 	return parseInt(this.replace(/\D/gim, ''));
 }
-String.prototype.evaluate = function(options, loopCount){
+String.prototype.evaluate = function(options, loopCount, input){
+
 	var ev = new RegExp('\{\{([\\s\\S]*?)\}\}', 'gim');
 	// variables
 	var start = options.start,
@@ -23,13 +24,17 @@ String.prototype.evaluate = function(options, loopCount){
 
 	var $this = this;
 
+
+	for (key in input){
+		eval("var "+key+" = "+input[key]);
+	}
+
 	// evaluate [if] statements
 	_if($this).matches.map((str)=> {
 		if (!eval(getExpressionResult(str))) {
 			$this = $this.replace(new RegExp(str.escapeSpecialChars(), 'gim'), '');
 		}
 	});
-
 	// remove if attribute
 	$this = $this.replace(/((\s| )?if\="(.*?)")/gim, '');
 	return $this.replace(ev, function(a, b) {

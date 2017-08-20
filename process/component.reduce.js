@@ -1,4 +1,5 @@
 require('./../extenders/string');
+let Input = require('./../parsers/component.input');
 
 
 
@@ -13,11 +14,15 @@ module.exports = function(html, components, step, parentOptions, loopCount) {
 		// if we found some component declarations
 		if (matches){
 			for (var i = matches.length - 1; i >= 0; i--) {
+
 				componentObject = Object.assign({}, parentOptions);
 				componentObject.component = components[key];
+
+				input = Input(matches[i]);
+
 				html = html.replace(
-					new RegExp(matches[i], 'gim'),
-					components[key].template.fixIndents(step+1).evaluate(componentObject, loopCount)
+					new RegExp(matches[i].escapeSpecialChars(), 'gim'),
+					components[key].template.fixIndents(step+1).evaluate(componentObject, loopCount, input)
 				)
 			};
 		}
