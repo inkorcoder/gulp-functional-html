@@ -24,9 +24,15 @@ String.prototype.evaluate = function(options, loopCount, input){
 
 	var $this = this;
 
-
-	for (key in input){
-		eval("var "+key+" = "+input[key]);
+	if (!input || !input.global){
+		for (key in input){
+			eval("var "+key+" = "+input[key]);
+		}
+	} else if (typeof eval(options.variable) === 'object') {
+		let global = eval(options.variable);
+		for (key in global){
+			eval("var "+key+" = global[key]");
+		}
 	}
 
 	// evaluate [if] statements

@@ -13,7 +13,7 @@ module.exports = function(component){
 		for (var i = input.length - 1; i >= 0; i--) {
 			let key = input[i].match(/\[[^\]]*\]/gim)[0].replace(/(\[|\])/gim, '');
 			let value = input[i].match(/\="[^"]*"/gim)[0].dropGarbage();
-			Input[key] = value;
+			Input[key || 'global'] = value;
 		};
 	}
 
