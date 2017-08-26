@@ -2,6 +2,13 @@
 
 This module allows you to use some great stuff from JS-frameworks templating in your HTML. The synthax is looks like an Angular templates synthax.
 
+## Start
+
+- Create folder `modular` in your `node_modules` folder
+- Download and unpack in `/node_modules/modular`
+- in your gulpfile include this module `modular = require('modular')`
+- inject module into pipeline `.pipe(modular({ dir: __dirname }))`
+
 ## Progress
 
 ##### Basic
