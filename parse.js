@@ -10,7 +10,8 @@ let parsers = {
 let process = {
 	While: require('./process/while'),
 	For: require('./process/for'),
-	Lorem: require('./process/lorem')
+	Lorem: require('./process/lorem'),
+	Comoponent: require('./process/component.reduce')
 };
 
 module.exports = function parse(html, params){
@@ -53,6 +54,22 @@ module.exports = function parse(html, params){
 		return processHTML;
 	}
 	html = parseHTML(html);
+
+	// parse non-parsed earlier <components>
+	for (key in foundedComponents){
+		// get tag name
+		let tag = foundedComponents[key].tagName;
+		// and create regular expression
+		matches = html.match(new RegExp("^(\\t*?)<"+tag+"[^>]*>([\\s\\S]*?)</"+tag+">", 'gim'));
+
+		var i = 0;
+		while (matches){
+			html = process.Comoponent(html, foundedComponents, i, {}, 0);
+			matches = html.match(new RegExp("^(\\t*?)<"+tag+"[^>]*>([\\s\\S]*?)</"+tag+">", 'gim'));
+			i++;
+		}
+
+	}
 
 	// parse non-processed earlier $lorem()
 	html = process.Lorem(html, parsers.Lorem(html));

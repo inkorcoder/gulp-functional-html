@@ -24,6 +24,7 @@ String.prototype.evaluate = function(options, loopCount, input){
 
 	var $this = this;
 
+
 	if (!input || !input.global){
 		for (key in input){
 			eval("var "+key+" = "+input[key]);
@@ -37,7 +38,7 @@ String.prototype.evaluate = function(options, loopCount, input){
 
 	// evaluate [if] statements
 	_if($this).matches.map((str)=> {
-		if (!eval(getExpressionResult(str))) {
+		if (eval("typeof "+getExpressionResult(str)) === 'undefined' || !eval(getExpressionResult(str))) {
 			$this = $this.replace(new RegExp(str.escapeSpecialChars(), 'gim'), '');
 		}
 	});
@@ -71,5 +72,13 @@ String.prototype.getHTMLTag = function(tagName){
 }
 
 String.prototype.fixIndents = function(indentsCount) {
-	return this.replace(/^/gim, "\n"+("\t".multiply(indentsCount)));
+	return this.replace(/\n$|^/gim, "\n"+("\t".multiply(indentsCount)));
+}
+
+String.prototype.countRepeatedChar = function(char){
+	if (this.match(new RegExp("^\t{1,}", "gim"))) {
+		return this.match(new RegExp("^\t{1,}", "gim"))[0].split('\t').length;
+	} else {
+		return 0;
+	}
 }

@@ -20,10 +20,14 @@ module.exports = function(html, components, step, parentOptions, loopCount) {
 
 				input = Input(matches[i]);
 
-				html = html.replace(
-					new RegExp(matches[i].escapeSpecialChars(), 'gim'),
-					components[key].template.fixIndents(step+1).evaluate(componentObject, loopCount, input)
-				)
+				if (components[key]) {
+					let tabsOffset = matches[i].escapeSpecialChars().countRepeatedChar('\t')
+					console.log(tabsOffset)
+					html = html.replace(
+						new RegExp(matches[i].escapeSpecialChars(), 'gim'),
+						components[key].template.fixIndents(tabsOffset-1).evaluate(componentObject, loopCount, input).dropEmptyLines()
+					)
+				}
 			};
 		}
 	}
