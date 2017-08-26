@@ -20,7 +20,7 @@ This module allows you to use some great stuff from JS-frameworks templating in 
 ##### Binding
 
 - [x] basic
-- [ ] global
+- [x] global
 - [ ] class
 - [ ] attribute
 - [ ] id
@@ -162,6 +162,7 @@ The data automatically binds to variable wich you create earlier in `for="let $v
 
 You can bind variables to component and use it inside. The variable name is writing in square braces. The value writing in quotes. It can be variable name or string, or boolean.
 
+#### Basic
 ```
 <!-- ./user.html -->
 <div class="user-card">
@@ -171,5 +172,24 @@ You can bind variables to component and use it inside. The variable name is writ
 <!-- index.html -->
 <li for="user in users">
 	<user [name]="user"></user>
+</li>
+```
+
+#### Global
+Global binding allows you to bind object to component an after that you will be able to use the keys of this object as a variables names
+
+```
+<!-- ./user.html -->
+<div class="user-card">
+	{{name}}
+	{{age}}
+<div>
+
+<!-- index.html -->
+<li for="user in [
+	{name: 'John', age: 20},
+	{name: 'Bob', age: 99}
+]">
+	<user []="user"></user>
 </li>
 ```
