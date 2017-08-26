@@ -2,6 +2,7 @@ var $lorem = require('./../data');
 var _if = require('./../parsers/if');
 var getExpressionResult = require('./../parsers/if').getExpressionResult;
 let generateHash = require('./../helpers/hash');
+let getComponentBindings = require('./../parsers/component.bindings');
 
 
 
@@ -25,6 +26,7 @@ String.prototype.evaluate = function(options, loopCount, input){
 	var $this = this;
 
 
+
 	if (!input || !input.global){
 		for (key in input){
 			eval("var "+key+" = "+input[key]);
@@ -44,6 +46,7 @@ String.prototype.evaluate = function(options, loopCount, input){
 	});
 	// remove if attribute
 	$this = $this.replace(/((\s| )?if\="(.*?)")/gim, '');
+
 	return $this.replace(ev, function(a, b) {
 		if (eval("typeof "+b.split('.')[0]) === 'undefined'){
 			console.log('['+options.depth+'] Evaluation :: '+b+' is not defined in <' +options.component.tagName+ '>')

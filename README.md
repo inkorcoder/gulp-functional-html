@@ -21,10 +21,6 @@ This module allows you to use some great stuff from JS-frameworks templating in 
 
 - [x] basic
 - [x] global
-- [ ] class
-- [ ] attribute
-- [ ] id
-- [ ] style
 
 ## Basic
 
